@@ -39,7 +39,7 @@ export class ReservationsService {
     });
 
     event.availableTickets -= 1;
-    event.reservedBy.push(new Types.ObjectId(userId)); // ✅ Agrega el usuario al array
+    event.reservedBy.push(new Types.ObjectId(userId));
     await event.save();
 
     return { message: 'Reserva realizada con éxito' };
@@ -59,7 +59,6 @@ export class ReservationsService {
     if (event) {
       event.availableTickets += 1;
 
-      // Remover al usuario de reservedBy
       event.reservedBy = event.reservedBy.filter(
         (id) => id.toString() !== userId.toString(),
       );

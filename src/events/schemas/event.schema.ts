@@ -3,7 +3,7 @@ import mongoose, { Document, Types } from 'mongoose';
 
 export type EventDocument = Event & Document;
 
-@Schema({ timestamps: true }) // crea createdAt y updatedAt automáticos
+@Schema({ timestamps: true })
 export class Event {
   @Prop({ required: true })
   title: string;

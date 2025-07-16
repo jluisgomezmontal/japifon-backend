@@ -1,4 +1,3 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -8,7 +7,7 @@ import { ReservationsModule } from './reservations/reservations.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }), // Carga .env automáticamente
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {

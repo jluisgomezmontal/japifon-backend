@@ -28,14 +28,14 @@ export class EventsService {
   async findAll(): Promise<Event[]> {
     return this.eventModel
       .find()
-      .populate('reservedBy', 'email') // ← Trae los correos de los usuarios
+      .populate('reservedBy', 'email')
       .exec();
   }
 
   async findOne(id: string): Promise<Event> {
     const event = await this.eventModel
       .findById(id)
-      .populate('reservedBy', 'email') // ← También aquí
+      .populate('reservedBy', 'email')
       .exec();
 
     if (!event) throw new NotFoundException('Event not found');
@@ -58,7 +58,6 @@ export class EventsService {
       throw new BadRequestException('Capacity must be greater than 0');
     }
 
-    // Si cambias capacity, también ajusta availableTickets (puedes hacer reglas aquí si quieres)
     if (data.capacity) {
       const ticketsUsed = event.capacity - event.availableTickets;
       if (data.capacity < ticketsUsed) {
